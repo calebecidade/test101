@@ -23,43 +23,37 @@ const speakers = [
     name: "Matheus Carvalho",
     role: "Procurador da Fazenda Nacional",
     bio: "Uma das principais referências nacionais em Direito Público e contratações públicas. Mestre em Políticas Sociais e Cidadania, especialista em Direito e graduado pela UFBA.",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=500",
+    image: "/images/matheus-carvalho.png",
   },
   {
     name: "Tatiana Camarão",
     role: "Mestre em Direito Administrativo",
     bio: "Diretora de Gestão e Relações Institucionais da Meta 5. Professora e coordenadora da LEC. Coautora de obras de referência sobre licitações e contratos.",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=500",
+    image: "/images/tatiana-camarao.png",
   },
   {
     name: "Carlos Cox",
     role: "Promotor de Justiça",
     bio: "Sólida atuação na área de contratações públicas, com visão estratégica e domínio técnico da Nova Lei de Licitações. Referência na análise de riscos.",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=500",
+    image: "/images/carlos-cox.png",
   },
   {
     name: "Geane Benevides",
     role: "Contadora e Advogada",
     bio: "Especialista em Contratações Públicas. Membro da Comissão de Direito Público da OAB-BA e Contabilidade Aplicada ao Setor Público do CRC-BA.",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=500",
+    image: "/images/geane-benevides.png",
   },
   {
     name: "Alessandro Macedo",
     role: "Auditor de Controle Externo do TCM/BA",
     bio: "Mestre em Administração e Pós-graduado em Direito Público. Autor do livro 'Modelos de Gestão Pública e Cultura Organizacional no TCM-BA'.",
-    image:
-      "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=400&h=500",
+    image: "/images/alessandro-macedo.png",
   },
   {
     name: "Renata Ramos",
     role: "Advogada, Especialista em Direito Público",
     bio: "Pós-graduação em Licitações e Contratações Públicas. Especializações em Direito do Trabalho e Controle Interno. Mestranda em Direito Administrativo.",
-    image:
-      "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?auto=format&fit=crop&q=80&w=400&h=500",
+    image: "/images/renata-ramos.png",
   },
 ];
 
@@ -89,10 +83,10 @@ export default function App() {
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-4 md:gap-8">
-            <div className="text-2xl font-display tracking-widest flex items-center gap-2">
-              <span className="text-white">IGP</span>
+            <div className="flex items-center gap-4">
+              <img src="/images/logo-igp.png" alt="IGP" className="h-8 md:h-10 object-contain" />
               <span className="w-px h-6 bg-white/20 hidden md:block"></span>
-              <span className="text-brand hidden md:block">INSMAC</span>
+              <img src="/images/logo-insmac.png" alt="INSMAC" className="h-6 md:h-8 object-contain hidden md:block" />
             </div>
             <div className="hidden lg:flex items-center gap-6 text-sm font-semibold uppercase tracking-wider text-zinc-400">
               <button
@@ -424,7 +418,11 @@ export default function App() {
                   <img
                     src={speaker.image}
                     alt={speaker.name}
-                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105"
+                    className={`w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105 ${
+                      speaker.name === "Geane Benevides" || speaker.name === "Renata Ramos" 
+                        ? "object-top" 
+                        : "object-[center_10%]"
+                    }`}
                   />
                   <div className="absolute bottom-4 left-4 z-20">
                     <h3 className="text-display text-3xl text-white">
@@ -441,6 +439,51 @@ export default function App() {
                   </p>
                 </div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Galeria de Fotos - Carrossel */}
+      <section className="py-16 bg-[#050505] border-t border-white/5 overflow-hidden">
+        <div className="container mx-auto px-4 mb-10 text-center">
+          <h2 className="text-display text-4xl md:text-5xl mb-2">
+            EDIÇÕES <span className="text-brand">ANTERIORES</span>
+          </h2>
+          <p className="text-zinc-400">
+            Veja como foram nossos últimos encontros
+          </p>
+        </div>
+        
+        <div className="relative w-full overflow-hidden">
+          {/* Fading edges */}
+          <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
+          <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
+          
+          <div className="flex w-[calc(250px*26)] animate-scroll">
+            {/* First set of images */}
+            {[...Array(13)].map((_, i) => (
+              <div key={`img1-${i}`} className="w-[250px] h-[200px] flex-shrink-0 px-2">
+                <div className="w-full h-full rounded-lg overflow-hidden border border-white/10">
+                  <img 
+                    src={`/cursos/imagem-curso (${i + 1}).png`} 
+                    alt={`Curso edição anterior ${i + 1}`}
+                    className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              </div>
+            ))}
+            {/* Second set of images (duplicate for infinite scroll) */}
+            {[...Array(13)].map((_, i) => (
+              <div key={`img2-${i}`} className="w-[250px] h-[200px] flex-shrink-0 px-2">
+                <div className="w-full h-full rounded-lg overflow-hidden border border-white/10">
+                  <img 
+                    src={`/cursos/imagem-curso (${i + 1}).png`} 
+                    alt={`Curso edição anterior ${i + 1}`}
+                    className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -472,11 +515,23 @@ export default function App() {
                 className="text-brand absolute top-6 right-6 opacity-20"
                 size={48}
               />
-              <p className="text-zinc-300 italic mb-6 relative z-10">
-                "A organização do evento se mostrou extremamente satisfatória e
-                adequada às questões práticas que este momento requer com
-                apresentações dinâmicas e interativas..."
-              </p>
+              <div className="text-zinc-300 italic mb-6 relative z-10 text-sm space-y-3">
+                <p>
+                  "A organização do evento se mostrou extremamente satisfatória e
+                  adequada às questões práticas que este momento requer com
+                  apresentações dinâmicas e interativas, possibilitando salutar
+                  troca de experiências entre os participantes.
+                </p>
+                <p>
+                  Parabéns a todos os envolvidos e um agradecimento especial aos
+                  mestres Matheus Carvalho e Tatiana Camarão, cujas competência e
+                  expertise dispensam comentários.
+                </p>
+                <p>
+                  A Controladoria Geral de Curionópolis está honrada e agradecida
+                  por fazer parte deste evento! ⚓"
+                </p>
+              </div>
               <div className="border-t border-white/10 pt-4 mt-auto">
                 <p className="font-bold text-brand uppercase tracking-wider">
                   Curinópolis - PA
@@ -495,12 +550,27 @@ export default function App() {
                 className="text-brand absolute top-6 right-6 opacity-20"
                 size={48}
               />
-              <p className="text-zinc-300 italic mb-6 relative z-10">
-                "Passando para agradecer aos organizadores, palestrantes e toda
-                equipe envolvida. Tivemos a oportunidade de desfrutar do
-                conhecimento, boas condutas a serem inseridas em nossas
-                atividades..."
-              </p>
+              <div className="text-zinc-300 italic mb-6 relative z-10 text-sm space-y-3">
+                <p>
+                  "Passando para agradecer aos organizadores, palestrantes e toda
+                  equipe envolvida.
+                </p>
+                <p>
+                  Representados pela Familia DJ _ Fofos D+<br />
+                  Eu e todos os participantes do Município central -Ba
+                </p>
+                <p>
+                  Tivemos a oportunidade de desfrutar do conhecimento, boas
+                  condutas a serem inseridas em nossas atividades e da Forma
+                  generosidade de cada um de vocês aí ao nos recepcionar com
+                  excelência. Ficamos felizes por participar e conviver estes dias
+                  com todos vocês.
+                </p>
+                <p>
+                  Nosso abraço fraterno em cada um de vocês. Pela dedicação,
+                  determinação e desejo de mudanças."
+                </p>
+              </div>
               <div className="border-t border-white/10 pt-4 mt-auto">
                 <p className="font-bold text-brand uppercase tracking-wider">
                   Central - BA
@@ -519,12 +589,24 @@ export default function App() {
                 className="text-brand absolute top-6 right-6 opacity-20"
                 size={48}
               />
-              <p className="text-zinc-300 italic mb-6 relative z-10">
-                "Estou muito feliz com todo conteúdo que nos foi repassado,
-                tenho certeza voltaremos para nossos Órgãos mais animados e
-                confiantes, pois estamos com uma bagagem enorme de
-                conhecimento."
-              </p>
+              <div className="text-zinc-300 italic mb-6 relative z-10 text-sm space-y-3">
+                <p>
+                  "Estou muito feliz com todo conteúdo que nos foi repassado,
+                  tenho certeza voltaremos para nossos Órgãos mais animados e
+                  confiantes, pois estamos com uma bagagem enorme de
+                  conhecimento.
+                </p>
+                <p>
+                  Confiem em vocês e façam valer toda experiência.
+                </p>
+                <p>
+                  Obrigada aos mestres e a equipe (todas as meninas envolvidas)!
+                  Obrigada
+                </p>
+                <p>
+                  Parabéns a todos!"
+                </p>
+              </div>
               <div className="border-t border-white/10 pt-4 mt-auto">
                 <p className="font-bold text-brand uppercase tracking-wider">
                   TCM - PA
@@ -564,19 +646,16 @@ export default function App() {
               </button>
             </div>
 
-            <div className="bg-[#111] border-2 border-brand p-8 text-center flex flex-col relative transform md:-translate-y-4 shadow-[0_0_30px_rgba(234,179,8,0.15)]">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand text-black font-bold uppercase text-xs px-4 py-1 tracking-wider">
-                Mais Procurado
-              </div>
-              <h3 className="text-xl font-bold uppercase text-brand mb-2">
+            <div className="bg-[#111] border border-white/10 p-8 text-center flex flex-col">
+              <h3 className="text-xl font-bold uppercase text-zinc-400 mb-2">
                 Lote 02
               </h3>
-              <p className="text-sm text-zinc-400 mb-6">Individual</p>
-              <p className="text-display text-5xl text-white mb-8">
+              <p className="text-sm text-zinc-500 mb-6">Individual</p>
+              <p className="text-display text-4xl text-white mb-8">
                 R$ 2.429,00
               </p>
-              <button className="mt-auto w-full bg-brand hover:bg-brand-hover text-black font-bold uppercase py-4 transition-colors">
-                Inscreva-se Agora
+              <button className="mt-auto w-full border border-white/20 hover:border-brand text-white hover:text-brand font-bold uppercase py-3 transition-colors">
+                Selecionar
               </button>
             </div>
 
@@ -683,11 +762,9 @@ export default function App() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-6">
-              <div className="text-2xl font-display tracking-widest">IGP</div>
+              <img src="/images/logo-igp.png" alt="IGP" className="h-10 object-contain" />
               <div className="w-px h-6 bg-white/20"></div>
-              <div className="text-2xl font-display tracking-widest text-brand">
-                INSMAC
-              </div>
+              <img src="/images/logo-insmac.png" alt="INSMAC" className="h-8 object-contain" />
             </div>
 
             <div className="text-center md:text-right">
